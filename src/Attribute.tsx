@@ -1,26 +1,23 @@
 import React from 'react';
-import {
-    Row,
-    Button,
-    Col,
-    Container,
-    Card,
-    InputGroup,
-    FormControl,
-    // Form,
-    // FormControl,
-    // Button
-} from "react-bootstrap"
+import {useRootData} from "./store/UseRootData";
+import {Button, Input} from "antd";
 
-interface Props{
+import {MinusOutlined, PlusOutlined,} from '@ant-design/icons';
+
+interface Props {
     type: string;
     value: number;
 }
 
-function bonusPrefix(bunus : number) {
-    if (bunus > 0) {return "+"} else {return ""}
+function bonusPrefix(bunus: number) {
+    if (bunus > 0) {
+        return "+"
+    } else {
+        return ""
+    }
 }
-function calculateBonus(attribute : number) {
+
+function calculateBonus(attribute: number) {
     if (attribute < 3) { return -2 } else
     if (attribute < 7) { return -1 } else
     if (attribute < 13) { return -0 } else
@@ -30,15 +27,20 @@ function calculateBonus(attribute : number) {
 }
 
 function Attribute(props: Props) {
-    console.log(props)
+    const updateAttribute = useRootData(store => store.updateAttribute);
+    const downgradeAttribute = useRootData(store => store.downgradeAttribute);
     let bonus = calculateBonus(props.value)
     return (
         <>
-            <InputGroup className="mb-3">
-                <InputGroup.Text>{props.type}</InputGroup.Text>
-                <FormControl aria-label="kek" value={props.value} />
-                <InputGroup.Text>{bonusPrefix(bonus)}{bonus}</InputGroup.Text>
-            </InputGroup>
+            <Input.Group>
+                <Button icon={<MinusOutlined/>} onClick={() => downgradeAttribute(props.type)}/>
+                <Input style={{width: 'calc(100% - 100px)'}}
+                       value={props.value}
+                       addonBefore={props.type}
+                       addonAfter={`${bonusPrefix(bonus)}${bonus}`}
+                />
+                <Button icon={<PlusOutlined/>} onClick={() => updateAttribute(props.type)}/>
+            </Input.Group>
         </>
         );
 }

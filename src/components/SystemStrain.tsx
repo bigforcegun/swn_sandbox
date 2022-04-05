@@ -1,26 +1,10 @@
-import React, {CSSProperties} from 'react';
-import {
-    Row,
-    Button,
-    Col,
-    Container,
-    InputGroup,
-    Card as BootstrapCard,
-    FormControl, ListGroup, ListGroupItem, Badge,
-    // Form,
-    // FormControl,
-    // Button
-} from "react-bootstrap"
+import React, {FC} from 'react';
+import {Badge, Card as BootstrapCard, ListGroup, ListGroupItem,} from "react-bootstrap"
 import {Card, List, Tag} from "antd";
 
-import {
-    CheckCircleOutlined,
-    SyncOutlined,
-    CloseCircleOutlined,
-    ExclamationCircleOutlined,
-    ClockCircleOutlined,
-    MinusCircleOutlined,
-} from '@ant-design/icons';
+import {CheckCircleOutlined,} from '@ant-design/icons';
+import {useRootData} from "../store/UseRootData";
+
 
 interface Props {
     type: string;
@@ -50,23 +34,29 @@ function calculateBonus(attribute: number) {
 
 }
 
-function SystemStrain(props: Props) {
-    console.log(props)
-    let bonus = calculateBonus(props.value)
+const SystemStrain: FC<Props> = ({type = ""}) => {
+
+    const cities = useRootData(store => store.filteredCities);
+    const updateAttribute = useRootData(store => store.updateAttribute);
+    let count = 1
+
     let data = ["1", 2, 3]
     return (
         <Card size="small"
-            title="System Strain"
-            extra={<Tag icon={<CheckCircleOutlined />} color="success">
-                6/13
-            </Tag>}
+              title="System Strain"
+              extra={<Tag icon={<CheckCircleOutlined/>} color="success">
+                  {count}/13
+              </Tag>}
         >
 
-            <Card.Grid  hoverable={false} style={{width: "100%", padding: "0"}}>
+            <Card.Grid hoverable={false} style={{width: "100%", padding: "0"}}>
+                <button onClick={() => updateAttribute("str")}>
+                    Click me
+                </button>
                 <List
                     size="small"
-                    dataSource={data}
-                    renderItem={item => <List.Item>{item}</List.Item>}
+                    dataSource={cities}
+                    renderItem={item => <List.Item key={item}>{item}</List.Item>}
                 />
             </Card.Grid>
 
