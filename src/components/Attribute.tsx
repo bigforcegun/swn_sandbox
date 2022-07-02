@@ -1,5 +1,5 @@
 import React from 'react';
-import {useRootData} from "./store/UseRootData";
+import {useRootData} from "../store/UseRootData";
 import {Button, Input} from "antd";
 
 import {MinusOutlined, PlusOutlined,} from '@ant-design/icons';

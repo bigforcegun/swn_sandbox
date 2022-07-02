@@ -2,50 +2,22 @@ import React from 'react';
 import './App.css';
 import './antd.less';
 import 'antd/dist/antd.css';
-import {Col, Container, Row,} from "react-bootstrap"
-import HitpointsAndConditions from "./components/HitpointsAndConditions";
-import SystemStrain from "./components/SystemStrain";
-import Saves from "./components/Saves";
-import Skills from "./components/Skills";
+import {Container,} from "react-bootstrap"
 import StoreProvider from "./store/context";
-import PlayerMainInfo from "./components/PlayerMainInfo";
-
-import PlayerAttributes from "./components/PlayerAttributes";
+import {Card} from "antd";
+import CharacterSheet from "./components/CharacterSheet";
+import CharacterSheetEditor from "./components/CharacterSheetEditor";
 
 
 function App() {
-
-
     return (
         <StoreProvider>
             <div className="App">
                 <Container fluid>
-                    <Row>
-                        <Col xs={4}>
-
-                            <PlayerMainInfo type={"kek"} value={1}/>
-                        </Col>
-                        <Col xs={4}>
-                            <Skills type={"kek"} value={1}/>
-
-                        </Col>
-                        <Col xs={2}>
-                            <HitpointsAndConditions type={"kek"} value={1}/>
-                            <SystemStrain type={"kek"} value={1}/>
-                            <Saves type={"kek"} value={1}/>
-
-
-                        </Col>
-                        <Col xs={2}>
-                            <PlayerAttributes/>
-                        </Col>
-
-                    </Row>
-                    <Row>
-                        <Col>1 of 3</Col>
-                        <Col>2 of 3</Col>
-                        <Col>3 of 3</Col>
-                    </Row>
+                    <Card title="John Due Character" bordered={false}>
+                        <CharacterSheetEditor character={"lel"}/>
+                        <CharacterSheet character={"lel"}/>
+                    </Card>
                 </Container>
             </div>
         </StoreProvider>

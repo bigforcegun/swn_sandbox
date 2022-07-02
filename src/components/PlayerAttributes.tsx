@@ -3,7 +3,7 @@ import {Card, Tag} from "antd";
 
 import {CheckCircleOutlined,} from '@ant-design/icons';
 import {useRootData} from "../store/UseRootData";
-import Attribute from "../Attribute";
+import Attribute from "./Attribute";
 
 
 interface Props {
@@ -12,7 +12,7 @@ interface Props {
 
 const PlayerAttributes: FC<Props> = () => {
     const attributes_flat = useRootData(store => store.attributes_flat);
-
+   //FIXME тут я кажись хуйню какую то делаю со сторами и пропсами
     return (
         <Card size="small"
               title="Attributes"

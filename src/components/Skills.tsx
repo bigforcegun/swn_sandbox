@@ -11,7 +11,7 @@ import {
     // FormControl,
     // Button
 } from "react-bootstrap"
-import Attribute from "../Attribute";
+import Attribute from "./Attribute";
 
 interface Props {
     type: string;
